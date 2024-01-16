@@ -17,12 +17,12 @@ Public apps are apps intended to appear in the [Shopify App Store](https://apps.
 ```js
 var shopifyAPI = require('node-shopify-api');
 
-
 var Shopify = new shopifyAPI({
   shop: 'MYSHOP', // MYSHOP.myshopify.com
   shopify_api_key: '', // Your API key
   shopify_shared_secret: '', // Your Shared Secret
   shopify_scope: 'write_products',
+  shopify_version: '2024-01',
   redirect_uri: 'http://localhost:3000/finish_auth',
   nonce: '' // you must provide a randomly selected value unique for each authorization request
 });
@@ -37,11 +37,11 @@ Private apps are created for a single shop and do not appear in the shopify app 
 ```js
 var shopifyAPI = require('node-shopify-api');
 
-
 var Shopify = new shopifyAPI({
   shop: 'MYSHOP', // MYSHOP.myshopify.com
   shopify_api_key: '', // Your API key
-  access_token: '' // Your API password
+  access_token: '', // Your API password
+   shopify_version: '2024-01' // API version
 });
 ```
 
