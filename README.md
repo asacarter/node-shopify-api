@@ -1,13 +1,13 @@
-shopify-node-api [![Build Status](https://travis-ci.org/christophergregory/shopify-node-api.svg?branch=master)](https://travis-ci.org/christophergregory/shopify-node-api)
+node-shopify-api [![Build Status](https://travis-ci.org/asacarter/node-shopify-api.svg?branch=master)](https://travis-ci.org/asacarter/node-shopify-api)
 ================
 
 OAuth2 Module for Shopify API
 
-[![NPM](https://nodei.co/npm/shopify-node-api.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/shopify-node-api/)
+[![NPM](https://nodei.co/npm/node-shopify-api.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/node-shopify-api/)
 
 ## Install
 ```
-npm install -S shopify-node-api
+npm install -S node-shopify-api
 ```
 
 ## Configure Public App
@@ -15,7 +15,7 @@ npm install -S shopify-node-api
 Public apps are apps intended to appear in the [Shopify App Store](https://apps.shopify.com?ref=grenadeapps) and require OAuth2 to access shop data.
 
 ```js
-var shopifyAPI = require('shopify-node-api');
+var shopifyAPI = require('node-shopify-api');
 
 
 var Shopify = new shopifyAPI({
@@ -35,7 +35,7 @@ var Shopify = new shopifyAPI({
 Private apps are created for a single shop and do not appear in the shopify app store. [More info here.](https://docs.shopify.com/api/guides/introduction/creating-a-private-app)
 
 ```js
-var shopifyAPI = require('shopify-node-api');
+var shopifyAPI = require('node-shopify-api');
 
 
 var Shopify = new shopifyAPI({
@@ -59,16 +59,18 @@ will throw an error like:
 
 ~~~
 > Error: ShopifyAPI module expects a config object
-> Please see documentation at: https://github.com/sinechris/shopify-node-api
+> Please see documentation at: https://github.com/asacarter/node-shopify-api
 ~~~
 
 ## Usage
 
 ```js
 
-// Building the authentication url
-
+// Building the authentication url for a permanent access token
 var auth_url = Shopify.buildAuthURL();
+
+// Building the authentication url for an online user access token
+var auth_url = Shopify.buildAuthURL('online');
 
 // Assuming you are using the express framework
 // you can redirect the user automatically like so
@@ -205,7 +207,7 @@ If an error occurs while making a request, the callback will be passed an error 
 
 ### Verbose Mode
 
-By default, shopify-node-api will automatically console.log all headers and responses. To suppress these messages, simply set verbose to false.
+By default, node-shopify-api will automatically console.log all headers and responses. To suppress these messages, simply set verbose to false.
 
 ```js
 var config = {
@@ -277,7 +279,7 @@ Shopify.is_valid_signature(query_params, true);
 
 ### API Call Limit Options
 
-By default, shopify-node-api will automatically wait if you approach Shopify's API call limit. The default setting for backoff delay time is 1 second if you reach 35 out of 40 calls. If you hit the limit, Shopify will return a 429 error, and by default, this module will have a rate limit delay time of 10 seconds. You can modify these options using the following parameters:
+By default, node-shopify-api will automatically wait if you approach Shopify's API call limit. The default setting for backoff delay time is 1 second if you reach 35 out of 40 calls. If you hit the limit, Shopify will return a 429 error, and by default, this module will have a rate limit delay time of 10 seconds. You can modify these options using the following parameters:
 
 ```js
 var config = {
@@ -300,7 +302,7 @@ var config = {
 ```
 # Become a Shopify App Developer
 
-[Join the Shopify Partner Program](https://app.shopify.com/services/partners/signup?ref=grenadeapps)
+[Join the Shopify Partner Program](https://www.shopify.com/partners)
 
 # Testing
 
@@ -311,7 +313,5 @@ npm test
 
 
 # Contributing
-
-Shopify has been kind enough to list this module on their [Official Documentation](http://docs.shopify.com/api/libraries/node?ref=grenadeapps). As such it is important that this module remain as bug free and up to date as possible in order to make the experience with node.js/Shopify as seamless as possible.
 
 I will continue to make updates as often as possible but we are more than happy to review any feature requests and will be accepting pull requests as well.
